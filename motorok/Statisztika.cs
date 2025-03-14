@@ -14,12 +14,16 @@ namespace motorok
         {
             StreamReader sr = new StreamReader(fileName);
             sr.ReadLine();
-            while (sr.EndOfStream)
+            while (!sr.EndOfStream)
             {
                 string sor = sr.ReadLine();
                 string[] szavak = sor.Split(";");
                 Motorok.Add(new Motor(szavak[0], szavak[1], int.Parse(szavak[2]), double.Parse(szavak[3]), double.Parse(szavak[4])));
-                sr.Close();
+            }
+            sr.Close();
+            foreach (var item in  Motorok)
+            {
+                Console.WriteLine(item);
             }
         }
         public int SumPrices(string brand = null)
